@@ -39,11 +39,15 @@ class LocalRooms
     #[ORM\ManyToMany(targetEntity: Software::class, inversedBy: 'localRooms')]
     private Collection $id_software;
 
+    #[ORM\ManyToMany(targetEntity: Reservation::class, mappedBy: 'id_localroom')]
+    private Collection $reservations;
+
     public function __construct()
     {
         $this->id_ergonomics = new ArrayCollection();
         $this->id_material = new ArrayCollection();
         $this->id_software = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -179,6 +183,33 @@ class LocalRooms
     public function removeIdSoftware(Software $idSoftware): self
     {
         $this->id_software->removeElement($idSoftware);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->addIdLocalroom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            $reservation->removeIdLocalroom($this);
+        }
 
         return $this;
     }

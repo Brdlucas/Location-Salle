@@ -1,0 +1,19 @@
+
+
+mettre en place easyadminbundle pour la gestion des salles.
+
+
+base.html.twig : 
+
+Navbar : 1 bouton "Location", bouton "contact", bouton "se connecter", bouton "About". 
+
+footer : bouton "About", bouton "Contact", bouton "Mention légal";
+
+si possible quand tout terminer : un bouton qui change la background. un bouton pour les mal-voyant qui agrandira le texte.
+
+HomeController :
+
+main : cadre avec les six premières locations avec un bouton qui pour afficher tout les locations
+
+card : photo, titre, description, lieu (pays, ville, adresse), prix, bouton qui renvoie vers la page de la location, nombre de personne dans la salle
+

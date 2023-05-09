@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ErgonomicsRepository;
+use App\Repository\MaterialRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ErgonomicsRepository::class)]
-class Ergonomics
+#[ORM\Entity(repositoryClass: MaterialRepository::class)]
+class Material
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,7 +21,10 @@ class Ergonomics
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: LocalRooms::class, mappedBy: 'id_ergonomics')]
+    #[ORM\Column]
+    private ?int $disponibility = null;
+
+    #[ORM\ManyToMany(targetEntity: LocalRooms::class, mappedBy: 'id_material')]
     private Collection $localRooms;
 
     public function __construct()
@@ -51,9 +54,21 @@ class Ergonomics
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDisponibility(): ?int
+    {
+        return $this->disponibility;
+    }
+
+    public function setDisponibility(int $disponibility): self
+    {
+        $this->disponibility = $disponibility;
 
         return $this;
     }
@@ -70,7 +85,7 @@ class Ergonomics
     {
         if (!$this->localRooms->contains($localRoom)) {
             $this->localRooms->add($localRoom);
-            $localRoom->addIdErgonomic($this);
+            $localRoom->addIdMaterial($this);
         }
 
         return $this;
@@ -79,7 +94,7 @@ class Ergonomics
     public function removeLocalRoom(LocalRooms $localRoom): self
     {
         if ($this->localRooms->removeElement($localRoom)) {
-            $localRoom->removeIdErgonomic($this);
+            $localRoom->removeIdMaterial($this);
         }
 
         return $this;

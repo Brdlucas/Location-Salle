@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LocalRooms index{% endblock %}
+
+{% block body %}
+    <h1>LocalRooms index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RoomCapacity</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for local_room in local_rooms %}
+            <tr>
+                <td>{{ local_room.id }}</td>
+                <td>{{ local_room.roomCapacity }}</td>
+                <td>{{ local_room.city }}</td>
+                <td>{{ local_room.address }}</td>
+                <td>{{ local_room.price }}</td>
+                <td>{{ local_room.description }}</td>
+                <td>
+                    <a href="{{ path('app_local_rooms_show', {'id': local_room.id}) }}">show</a>
+                    <a href="{{ path('app_local_rooms_edit', {'id': local_room.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_local_rooms_new') }}">Create new</a>
+{% endblock %}

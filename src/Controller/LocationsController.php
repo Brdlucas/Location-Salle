@@ -11,7 +11,7 @@ class LocationsController extends AbstractController
     #[Route('/locations', name: 'app_locations')]
     public function index(): Response
     {
-        return $this->render('locations/locations.html.twig', [
+        return $this->render('local_rooms/index.html.twig', [
             'controller_name' => 'LocationsController',
         ]);
     }

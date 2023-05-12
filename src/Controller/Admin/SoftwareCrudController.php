@@ -2,14 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\LocalRooms;
+use App\Entity\Software;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class LocalRoomsCrudController extends AbstractCrudController
+class SoftwareCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return LocalRooms::class;
+        return Software::class;
     }
 
     /*

@@ -3,7 +3,11 @@
 namespace App\Controller\Admin;
 
 
-use App\Entity\LocalRooms;
+use App\Entity\Rooms;
+use App\Entity\Capacity;
+use App\Entity\Ergonomic;
+use App\Entity\Materiel;
+use App\Entity\Software;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -31,6 +35,17 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Salle', 'fas fa-box', LocalRooms::class);
+
+        return [
+            
+             MenuItem::SubMenu("test", 'fa fa-article')->setSubItems([
+                yield MenuItem::linkToCrud('Salle', 'fa fa-room', Rooms::class),
+                yield MenuItem::linkToCrud('Capacité', 'fa fa-boxes', Capacity::class),
+                yield MenuItem::linkToCrud('Ergonomies', 'fa fa-boxes', Ergonomic::class),
+                yield MenuItem::linkToCrud('Materiel', 'fa fa-database', Materiel::class),
+                yield MenuItem::linkToCrud('Logiciels', 'fa fa-database', Software::class),
+            ]),
+        ];
+
     }
 }

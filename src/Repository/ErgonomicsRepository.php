@@ -2,27 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Ergonomic;
+use App\Entity\Ergonomics;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Ergonomic>
+ * @extends ServiceEntityRepository<Ergonomics>
  *
- * @method Ergonomic|null find($id, $lockMode = null, $lockVersion = null)
- * @method Ergonomic|null findOneBy(array $criteria, array $orderBy = null)
- * @method Ergonomic[]    findAll()
- * @method Ergonomic[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Ergonomics|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Ergonomics|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Ergonomics[]    findAll()
+ * @method Ergonomics[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ErgonomicRepository extends ServiceEntityRepository
+class ErgonomicsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Ergonomic::class);
+        parent::__construct($registry, Ergonomics::class);
     }
 
-    public function save(Ergonomic $entity, bool $flush = false): void
+    public function save(Ergonomics $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +30,7 @@ class ErgonomicRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Ergonomic $entity, bool $flush = false): void
+    public function remove(Ergonomics $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -41,7 +40,7 @@ class ErgonomicRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Ergonomic[] Returns an array of Ergonomic objects
+//     * @return Ergonomics[] Returns an array of Ergonomics objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -55,7 +54,7 @@ class ErgonomicRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Ergonomic
+//    public function findOneBySomeField($value): ?Ergonomics
 //    {
 //        return $this->createQueryBuilder('e')
 //            ->andWhere('e.exampleField = :val')

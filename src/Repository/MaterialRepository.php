@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Materiel;
+use App\Entity\Material;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Materiel>
+ * @extends ServiceEntityRepository<Material>
  *
- * @method Materiel|null find($id, $lockMode = null, $lockVersion = null)
- * @method Materiel|null findOneBy(array $criteria, array $orderBy = null)
- * @method Materiel[]    findAll()
- * @method Materiel[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Material|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Material|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Material[]    findAll()
+ * @method Material[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MaterielRepository extends ServiceEntityRepository
+class MaterialRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Materiel::class);
+        parent::__construct($registry, Material::class);
     }
 
-    public function save(Materiel $entity, bool $flush = false): void
+    public function save(Material $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MaterielRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Materiel $entity, bool $flush = false): void
+    public function remove(Material $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MaterielRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Materiel[] Returns an array of Materiel objects
+//     * @return Material[] Returns an array of Material objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class MaterielRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Materiel
+//    public function findOneBySomeField($value): ?Material
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')

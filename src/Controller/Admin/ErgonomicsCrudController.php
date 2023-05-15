@@ -2,18 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Software;
+use App\Entity\Ergonomics;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
 
-class SoftwareCrudController extends AbstractCrudController
+class ErgonomicsCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Software::class;
+        return Ergonomics::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -24,5 +23,4 @@ class SoftwareCrudController extends AbstractCrudController
             TextField::new('description'),
         ];
     }
-
 }

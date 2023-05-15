@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SoftwareRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SoftwareRepository::class)]
@@ -15,13 +16,13 @@ class Software
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'software', targetEntity: Rooms::class)]
+    #[ORM\ManyToMany(targetEntity: Rooms::class, mappedBy: 'Software')]
     private Collection $rooms;
 
     public function __construct()
@@ -70,7 +71,7 @@ class Software
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms->add($room);
-            $room->setSoftware($this);
+            $room->addSoftware($this);
         }
 
         return $this;
@@ -79,12 +80,14 @@ class Software
     public function removeRoom(Rooms $room): self
     {
         if ($this->rooms->removeElement($room)) {
-            // set the owning side to null (unless already changed)
-            if ($room->getSoftware() === $this) {
-                $room->setSoftware(null);
-            }
+            $room->removeSoftware($this);
         }
 
         return $this;
+    }
+
+    public function __toString() {
+
+        return "Nom : " . $this->name . " Description : " . $this->description;
     }
 }

@@ -2,29 +2,27 @@
 
 namespace App\Entity;
 
-use App\Repository\MaterielRepository;
+use App\Repository\ErgonomicsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MaterielRepository::class)]
-class Materiel
+#[ORM\Entity(repositoryClass: ErgonomicsRepository::class)]
+class Ergonomics
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?int $disponibility = null;
-
-    #[ORM\OneToMany(mappedBy: 'materiel', targetEntity: Rooms::class)]
+    #[ORM\ManyToMany(targetEntity: Rooms::class, mappedBy: 'Ergonomic')]
     private Collection $rooms;
 
     public function __construct()
@@ -54,21 +52,9 @@ class Materiel
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getDisponibility(): ?int
-    {
-        return $this->disponibility;
-    }
-
-    public function setDisponibility(int $disponibility): self
-    {
-        $this->disponibility = $disponibility;
 
         return $this;
     }
@@ -85,7 +71,7 @@ class Materiel
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms->add($room);
-            $room->setMateriel($this);
+            $room->addErgonomic($this);
         }
 
         return $this;
@@ -94,12 +80,14 @@ class Materiel
     public function removeRoom(Rooms $room): self
     {
         if ($this->rooms->removeElement($room)) {
-            // set the owning side to null (unless already changed)
-            if ($room->getMateriel() === $this) {
-                $room->setMateriel(null);
-            }
+            $room->removeErgonomic($this);
         }
 
         return $this;
+    }
+
+    public function __toString() {
+
+        return "Nom : " . $this->name . " Description : " . $this->description;
     }
 }

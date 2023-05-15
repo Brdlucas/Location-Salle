@@ -2,26 +2,27 @@
 
 namespace App\Entity;
 
-use App\Repository\CapacityRepository;
+use App\Repository\MaterialRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CapacityRepository::class)]
-class Capacity
+#[ORM\Entity(repositoryClass: MaterialRepository::class)]
+class Material
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $peopleNumber = null;
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'capacity', targetEntity: Rooms::class)]
+    #[ORM\ManyToMany(targetEntity: Rooms::class, mappedBy: 'material')]
     private Collection $rooms;
 
     public function __construct()
@@ -34,14 +35,14 @@ class Capacity
         return $this->id;
     }
 
-    public function getPeopleNumber(): ?int
+    public function getName(): ?string
     {
-        return $this->peopleNumber;
+        return $this->name;
     }
 
-    public function setPeopleNumber(int $peopleNumber): self
+    public function setName(string $name): self
     {
-        $this->peopleNumber = $peopleNumber;
+        $this->name = $name;
 
         return $this;
     }
@@ -51,7 +52,7 @@ class Capacity
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
@@ -70,7 +71,7 @@ class Capacity
     {
         if (!$this->rooms->contains($room)) {
             $this->rooms->add($room);
-            $room->setCapacity($this);
+            $room->addMaterial($this);
         }
 
         return $this;
@@ -79,17 +80,14 @@ class Capacity
     public function removeRoom(Rooms $room): self
     {
         if ($this->rooms->removeElement($room)) {
-            // set the owning side to null (unless already changed)
-            if ($room->getCapacity() === $this) {
-                $room->setCapacity(null);
-            }
+            $room->removeMaterial($this);
         }
 
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->description . " " . $this->peopleNumber;
+    public function __toString() {
+
+        return "Nom materiel : " . $this->name . " Description : " . $this->description;
     }
 }

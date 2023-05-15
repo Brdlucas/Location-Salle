@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Location{% endblock %}
+
+{% block body %}
+<main>
+    <h1 class="text-center text-primary-emphasis">LocalRooms</h1>
+    <hr>
+    <div>
+        <div class="card-group w-50 m-auto">
+            <div class="card m-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{room.city}} - {{room.capacity}}</h5>
+                    <p class="card-text">{{room.description}}</p>
+                    <p class="card-text"><small class="text-body-secondary">{{room.price}}</small></p>
+                    <p>{{room.material}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center m-3">
+            <a href="{{path('app_locations')}}" class="btn btn-primary">Voir toute les salles</a>
+        </div>
+</main>
+{% endblock %}

@@ -7,84 +7,22 @@
     <h1 class="text-center text-primary-emphasis">LocaRooms</h1>
     <hr>
     <div>
+        {% for room in rooms %}
         <div class="card-group w-50 m-auto">
             <div class="card m-4">
-                <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    <button>Voir la salle</button>
-                </div>
-            </div>
-
-            <div class="card m-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    <button>Voir la salle</button>
-                </div>
-            </div>
-
-            <div class="card m-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    <button>Voir la salle</button>
+                    <h5 class="card-title">{{room.city}} - {{room.capacity}} personnes</h5>
+                    <p class="card-text">{{room.description}}</p>
+                    <p class="card-text"><small class="text-body-secondary">{{room.price}} €</small></p>
+                    <div>
+                        <a href="{{path('one_location', {id : room.id})}}" class="btn btn-success">Voir la salle</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <div class="card-group w-50 m-auto">
-            <div class="card m-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    <button>Voir la salle</button>
-                </div>
-            </div>
-
-            <div class="card m-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
-                    </p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    <button>Voir la salle</button>
-                </div>
-            </div>
-
-            <div class="card m-4">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional
-                        content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    <button>Voir la salle</button>
-                </div>
-            </div>
+        {% endfor %}
+        <div class="text-center m-3">
+            <a href="{{path('app_locations')}}" class="btn btn-primary">Voir toute les salles</a>
         </div>
-    </div>
-    <hr>
-    <div class="text-center mb-2">
-        <button class="bg-success"><a href="/locations" class="text-white">Voir plus</a></button>
-    </div>
 </main>
 {% endblock %}

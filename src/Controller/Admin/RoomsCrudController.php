@@ -20,13 +20,15 @@ class RoomsCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
+            TextField::new('capacity'),
+            TextField::new('description'),
             TextField::new('city'),
             TextField::new('address'),
-            TextField::new('description'),
             IntegerField::new('price'),
-            AssociationField::new('capacity'),
-            AssociationField::new('ergonomic'),
+            AssociationField::new('material'),
+            AssociationField::new('Ergonomic'),
+            AssociationField::new('Software'),
         ];
     }
-    
+
 }

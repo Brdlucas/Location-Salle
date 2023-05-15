@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RoomsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RoomsRepository::class)]
@@ -15,6 +16,9 @@ class Rooms
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $capacity = null;
+
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
@@ -24,26 +28,40 @@ class Rooms
     #[ORM\Column]
     private ?float $price = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rooms')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Capacity $capacity = null;
+    #[ORM\ManyToMany(targetEntity: Material::class, inversedBy: 'rooms')]
+    private Collection $material;
 
-    #[ORM\ManyToOne(inversedBy: 'rooms')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Ergonomic $ergonomic = null;
+    #[ORM\ManyToMany(targetEntity: Ergonomics::class, inversedBy: 'rooms')]
+    private Collection $Ergonomic;
 
-    #[ORM\ManyToOne(inversedBy: 'rooms')]
-    private ?Materiel $materiel = null;
+    #[ORM\ManyToMany(targetEntity: Software::class, inversedBy: 'rooms')]
+    private Collection $Software;
 
-    #[ORM\ManyToOne(inversedBy: 'rooms')]
-    private ?Software $software = null;
+    public function __construct()
+    {
+        $this->material = new ArrayCollection();
+        $this->Ergonomic = new ArrayCollection();
+        $this->Software = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getCapacity(): ?string
+    {
+        return $this->capacity;
+    }
+
+    public function setCapacity(string $capacity): self
+    {
+        $this->capacity = $capacity;
+
+        return $this;
     }
 
     public function getCity(): ?string
@@ -94,58 +112,75 @@ class Rooms
         return $this;
     }
 
-    public function getCapacity(): ?Capacity
+    /**
+     * @return Collection<int, Material>
+     */
+    public function getMaterial(): Collection
     {
-        return $this->capacity;
+        return $this->material;
     }
 
-    public function setCapacity(?Capacity $capacity): self
+    public function addMaterial(Material $material): self
     {
-        $this->capacity = $capacity;
+        if (!$this->material->contains($material)) {
+            $this->material->add($material);
+        }
 
         return $this;
     }
 
-
-    public function getErgonomic(): ?Ergonomic
+    public function removeMaterial(Material $material): self
     {
-        return $this->ergonomic;
-    }
-
-    public function setErgonomic(?Ergonomic $ergonomic): self
-    {
-        $this->ergonomic = $ergonomic;
+        $this->material->removeElement($material);
 
         return $this;
     }
 
-    public function getMateriel(): ?Materiel
+    /**
+     * @return Collection<int, Ergonomics>
+     */
+    public function getErgonomic(): Collection
     {
-        return $this->materiel;
+        return $this->Ergonomic;
     }
 
-    public function setMateriel(?Materiel $materiel): self
+    public function addErgonomic(Ergonomics $ergonomic): self
     {
-        $this->materiel = $materiel;
-
-        return $this;
-    }
-    
-
-    public function getSoftware(): ?Software
-    {
-        return $this->software;
-    }
-
-    public function setSoftware(?Software $software): self
-    {
-        $this->software = $software;
+        if (!$this->Ergonomic->contains($ergonomic)) {
+            $this->Ergonomic->add($ergonomic);
+        }
 
         return $this;
     }
 
-    public function __toString()
+    public function removeErgonomic(Ergonomics $ergonomic): self
     {
-        return $this->capacity;
+        $this->Ergonomic->removeElement($ergonomic);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Software>
+     */
+    public function getSoftware(): Collection
+    {
+        return $this->Software;
+    }
+
+    public function addSoftware(Software $software): self
+    {
+        if (!$this->Software->contains($software)) {
+            $this->Software->add($software);
+        }
+
+        return $this;
+    }
+
+    public function removeSoftware(Software $software): self
+    {
+        $this->Software->removeElement($software);
+
+        return $this;
     }
 }

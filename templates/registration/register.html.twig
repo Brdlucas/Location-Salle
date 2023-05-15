@@ -17,7 +17,9 @@
         }) }}</p>
     <p>{{ form_row(registrationForm.agreeTerms) }}</p>
 
-    <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    <div class="text-center mb-5">
+        <button type="submit" class="btn btn-primary w-50" style="font-size: 25px">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+    </div>
 </div>
 {% endblock %}

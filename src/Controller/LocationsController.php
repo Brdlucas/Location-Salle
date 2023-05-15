@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ErgonomicsRepository;
 use App\Repository\RoomsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,10 @@ class LocationsController extends AbstractController
     {
         return $this->render('locations/locations.html.twig', [
             'controller_name' => 'LocationsController',
-            'rooms' => $rooms->findAll(),
+            'rooms' => $rooms->findBy(
+                [],
+                ['id' => 'ASC'],
+            ),
         ]);
     }
 
@@ -25,12 +29,8 @@ class LocationsController extends AbstractController
         return $this->render('location/location.html.twig', [
             'room' => $rooms->findOneBy(
                 ['id' => $id],
-            )
+            ),
         ]);
     }
     
-    public function __toString() {
-
-        return $this->Ergonomic;
-    }
 }

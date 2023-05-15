@@ -14,7 +14,10 @@
     <header>
         <ul class="nav justify-content-end text-bg-primary">
             <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" href="{{path('app_locations')}}">Location</a>
+                <a class="nav-link active text-white" aria-current="page" href="{{path('app_home')}}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active text-white" aria-current="page" href="{{path('app_locations')}}">Locations</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">A propos</a>
@@ -22,9 +25,16 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">Contact</a>
             </li>
+            {% if app.user %}
             <li class="nav-item">
-                <a class="nav-link text-white" href="{{path('app_register')}}">Se connecter</a>
+                <a class="nav-link text-white" href="{{path('app_logout')}}">Déconnexion</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{{path('app_login')}}">Connexion</a>
+            </li>
+            {% endif %}
+
         </ul>
     </header>
     {% block body %}

@@ -20,4 +20,9 @@ class HomeController extends AbstractController
                 3),
         ]);
     }
+
+    function index_html_twig(&$vars) {
+        static $counter = 0;
+        $vars['counter'] = $counter++;
+      }
 }

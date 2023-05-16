@@ -9,11 +9,32 @@
     <div>
         <div class="card-group w-50 m-auto">
             <div class="card m-4">
+                <img src="/a" alt="">
                 <div class="card-body">
                     <h5 class="card-title">{{room.city}} - {{room.capacity}}</h5>
                     <p class="card-text">{{room.description}}</p>
                     <p class="card-text"><small class="text-body-secondary">{{room.price}}</small></p>
-                    <p>{{room.Ergonomic}}</p>
+                    <hr>
+                    <div>
+                        <h2 class="text-center">Ergonomie : </h2>
+                        {% for item in room.Ergonomic %}
+                        <p>{{item.name}} : {{item.description}}</p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div>
+                        <h2 class="text-center">Materiel : </h2>
+                        {% for item in room.material %}
+                        <p>{{item.name}} : {{item.description}}</p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div>
+                        <h2 class="text-center">Logiciel : </h2>
+                        {% for item in room.software %}
+                        <p>{{item.name}} : {{item.description}}</p>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

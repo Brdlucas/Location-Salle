@@ -4,5 +4,5 @@ controllers:
     namespace: App\Controller
   type: attribute
 dashboard:
-  path: /admin
+  path: /nesquik123
   controller: App\Controller\Admin\DashboardController::index

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ergonomics;
 use App\Repository\ErgonomicsRepository;
 use App\Repository\RoomsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +23,7 @@ class LocationsController extends AbstractController
         ]);
     }
 
-    #[Route('/locations/{id}', name: 'one_location', methods: ['GET', 'POST'])]
+    #[Route('/locations/loc/{id}', name: 'one_location', methods: ['GET', 'POST'])]
 
     public function oneLocation($id, RoomsRepository $rooms) : Response
     {

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LocationsController!{% endblock %}
+{% block title %}Locations{% endblock %}
 
 {% block body %}
 <div>
@@ -8,14 +8,14 @@
     <div class="card-group w-50 m-auto text-center">
         <div class="card m-4">
             <div class="card-body">
-                {% set counter = ( counter | default(14) ) - 1 %}
+                {% set counter = ( counter | default(8) ) - 1 %}
                 <img src="assets/img/image{{counter}}.jpg" alt="image{{counter}}" class="w-100">
                 <h5 class="card-title" style=" font-size: 30px">{{room.city}} - {{room.capacity}} personnes</h5>
                 <p class="card-text" style="font-size: 25px;">{{room.description}}</p>
                 <p class="card-text" style="font-size: 20px"><strong class="text-body-secondary">{{room.price}}
                         €</strong></p>
                 <div>
-                    <button class="btn btn-success">Voir toute les salles</button>
+                    <button class="btn btn-success">Voir la salle</button>
                 </div>
             </div>
         </div>

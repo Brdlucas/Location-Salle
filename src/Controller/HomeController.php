@@ -21,8 +21,4 @@ class HomeController extends AbstractController
         ]);
     }
 
-    function index_html_twig(&$vars) {
-        static $counter = 0;
-        $vars['counter'] = $counter++;
-      }
 }

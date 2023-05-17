@@ -11,9 +11,9 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="text-white" style="background: #2A2F4F">
     <header>
-        <ul class="nav justify-content-end text-bg-primary">
+        <ul class="nav justify-content-end" style="background-color: #737373;">
             <li class="nav-item">
                 <a class="nav-link active text-white" aria-current="page" href="{{path('app_home')}}">Accueil</a>
             </li>
@@ -38,13 +38,15 @@
 
         </ul>
     </header>
+    <h1 class="text-center text-white">LocalRooms</h1>
+    <hr class="bg-white">
     {% block body %}
 
     {% endblock %}
 
     <footer>
-        <ul class="nav justify-content-center text-bg-primary">
-            <li class="nav-item">
+        <ul class="nav justify-content-center" style="background-color: #737373">
+            <li class=" nav-item">
                 <a class="nav-link active text-white" aria-current="page" href="#">A propos</a>
             </li>
             <li class="nav-item">

@@ -217,4 +217,10 @@ class Rooms
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->city . " " . $this->address . " " . $this->description;
+    }
+
 }

@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 use App\Entity\Rooms;
 use App\Entity\Ergonomics;
 use App\Entity\Material;
+use App\Entity\Reservations;
 use App\Entity\Software;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;

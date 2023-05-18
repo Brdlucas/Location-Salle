@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Ergonomics;
-use App\Repository\ErgonomicsRepository;
+use App\Entity\Reservations;
+use App\Form\ReservationType;
 use App\Repository\RoomsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,11 +27,11 @@ class LocationsController extends AbstractController
 
     public function oneLocation($id, RoomsRepository $rooms) : Response
     {
-        return $this->render('location/location.html.twig', [
+        return $this->render('locations/location.html.twig', [
             'room' => $rooms->findOneBy(
                 ['id' => $id],
             ),
         ]);
     }
-    
+   
 }

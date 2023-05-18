@@ -60,6 +60,7 @@
                                 <div class="card-body">
                                     <h5 class="m-auto text-center">Logiciels :</h5>
                                 </div>
+
                             </div>
                         </div>
                         <div class="mx-3 mt-2">
@@ -68,6 +69,10 @@
                             {% endfor %}
                         </div>
                     </div>
+                </div>
+                <div class="text-center m-3">
+                    <a href="{{path('app_reservation', {id: room.id})}}" class="btn btn-primary">Réserver la
+                        salle</a>
                 </div>
                 <div class="text-center m-3">
                     <a href="{{path('app_locations')}}" class="btn btn-primary">Voir toute les salles</a>

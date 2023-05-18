@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Location{% endblock %}
+
+{% block body %}
+<main>
+    <div>
+        <div class="card-group w-75 m-auto">
+            <div class="card m-4" style="background: #F0F0F0">
+                <div class=" card-body">
+                    <img src="/assets/img/image{{room.id}}.jpg" alt="image{{room.id}}" class="w-25 h-25 mb-3">
+                    <div class="row m-auto text-center w-50">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>{{room.capacity}} pers.</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>{{room.price}} €</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-sm-6 m-auto w-25">
+                        <div class="card m-auto">
+                            <div class="card-body">
+                                <h5 class="m-auto text-center">Ergonomie :</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mx-3 mt-2">
+                        {% for item in room.Ergonomic %}
+                        <p style="font-size: 20px">{{item.name}} : {{item.description}}</p>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="col-sm-6 m-auto w-25">
+                            <div class="card m-auto">
+                                <div class="card-body">
+                                    <h5 class="m-auto text-center">Materiel :</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mx-3 mt-2">
+                            {% for item in room.material %}
+                            <p style="font-size: 20px">{{item.name}} : {{item.description}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="col-sm-6 m-auto w-25">
+                            <div class="card m-auto">
+                                <div class="card-body">
+                                    <h5 class="m-auto text-center">Logiciels :</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mx-3 mt-2">
+                            {% for item in room.software %}
+                            <p style="font-size: 20px">{{item.name}} : {{item.description}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="w-75">
+                    <p>{{ form_start(Reservation) }}</p>
+                    <p>{{ form_row(Reservation.name, {label: 'Titre :'}) }} </p>
+                    <p>{{ form_row(Reservation.status, {label: 'Nom :'}) }}</p>
+                    <p>{{ form_row(Reservation.preReservation, {label: 'Téléphone :'}) }}</p>
+                    <p>{{ form_row(Reservation.startDate, {label: 'Date de début :'}) }}</p>
+                    <p>{{ form_row(Reservation.endDate, {label: 'Date de fin :'}) }}</p>
+                    {# <p>{{ form_row(Reservation.user, {label: 'Utilisateur :'}) }} </p> #}
+                    <p>{{ form_row(Reservation.room, {label: 'Salle :'}) }}</p>
+
+                    <div class="text-center mb-5">
+                        <button type="submit" class="btn btn-primary w-25" style="font-size: 25px">Réserver</button>
+                        {{ form_end(Reservation) }}
+                    </div>
+
+                </div>
+            </div>
+</main>
+{% endblock %}

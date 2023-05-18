@@ -15,9 +15,15 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use function PHPSTORM_META\type;
 
 class ReservationType extends AbstractType
+
+
+
+
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $user = $options['user'];
+        
         $builder
             ->add('name', TextType::class,  [
                 'attr' => [
@@ -46,11 +52,11 @@ class ReservationType extends AbstractType
                 ])
             ->add('room', EntityType::class, [
                 'class' => Rooms::class,
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'firstname',
-            ])
+                
+                ])
+                ->add('user', TextType::class, [
+                    'data' => $user->getFirstName(),
+                ]);
         ;
     }
 
@@ -58,6 +64,9 @@ class ReservationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Reservations::class,
+            'user' => null,
         ]);
+        $resolver->setAllowedTypes('user', [User::class, 'null']);
+
     }
 }

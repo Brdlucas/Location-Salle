@@ -71,19 +71,24 @@
                 </div>
                 <div class="w-75">
                     <p>{{ form_start(Reservation) }}</p>
-                    <input class="w-25 text-center form-control" name="{{ field_value(Reservation.room) }}"
-                        value="{{room.city}}" />
+                    <p>{{ form_row(Reservation.name, {label: 'Titre :'}) }}</p>
+                    {# <input name="{{ field_name(Reservation.room) }}" value="{{ field_value(Reservation.room) }}"
+                        placeholder="{{ field_label(Reservation.room) }}" class="form-control" /> #}
 
-                    <input class="w-25 text-center form-control" name="{{ field_name(Reservation.user) }}"
-                        value="{{app.user.firstname}}" placeholder="{{app.user}}" class="" disabled />
+                    <input class="w-25 text-center form-control" name="{{ field_name(Reservation.room) }}"
+                        value="{{room.city}}" disabled />
+
+                    {# <input class="w-25 text-center form-control" name="{{ field_name(Reservation.user) }}"
+                        value="{{app.user.firstname}}" placeholder="{{app.user}}" class="" disabled /> #}
+                    <p>{{ form_row(Reservation.user)}}</p>
+
                     <input class="w-25 text-center form-control" name="{{ field_name(Reservation.user) }}"
                         value="{{app.user.lastname}}" placeholder="{{app.user}}" class="" disabled />
-                    <p>{{ form_row(Reservation.status, {label: 'Nom :'}) }}</p>
-                    <p>{{ form_row(Reservation.preReservation, {label: 'Téléphone :'}) }}</p>
+
+                    <p>{{ form_row(Reservation.status, {label: ' :'}) }}</p>
+                    <p>{{ form_row(Reservation.preReservation, {label: ' :'}) }}</p>
                     <p>{{ form_row(Reservation.startDate, {label: 'Date de début :'}) }}</p>
                     <p>{{ form_row(Reservation.endDate, {label: 'Date de fin :'}) }}</p>
-
-
                     <div class="text-center mb-5">
                         <button type="submit" class="btn btn-primary w-25" style="font-size: 25px">Réserver</button>
                         {{ form_end(Reservation) }}

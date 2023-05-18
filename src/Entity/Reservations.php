@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReservationsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: ReservationsRepository::class)]
 class Reservations
@@ -20,7 +21,7 @@ class Reservations
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?Rooms $room = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'], targetEntity: 'User')]
     private ?User $user = null;
 
     #[ORM\Column(length: 50)]

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Reservations;
-use App\Entity\Rooms;
 use App\Form\ReservationType;
 use App\Repository\RoomsRepository;
 use App\Repository\UserRepository;
@@ -15,23 +14,21 @@ use Doctrine\Persistence\ManagerRegistry;
 class ReservationController extends AbstractController
 {
     #[Route('/reservation/{id}', name: 'app_reservation')]
-    public function new($id, Request $request, RoomsRepository $room, UserRepository $users, ManagerRegistry $doctrine): Response
+    public function new($id, Request $request, RoomsRepository $room, UserRepository $user, ManagerRegistry $doctrine): Response
     {
-        // $repo = $this->$doctrine->getRepository(Rooms::class);
-        // $rooms = $repo->find($id);
 
+        $user = $this->getUser();        
         $reservation = new Reservations();
-        $form = $this->createForm(ReservationType::class, $reservation);
+        $form = $this->createForm(ReservationType::class, $reservation, ['user' => $user]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            // $reservation->setRoom($rooms);
             $em = $doctrine->getManager();
             $em->persist($reservation);   
             $em->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_home', array('id' => $reservation->getId()));
         }
 
         return $this->render('locations/reservation.html.twig', [
@@ -40,9 +37,6 @@ class ReservationController extends AbstractController
             'room' => $room->findOneBy(
                 ['id' => $id]
             ),
-            'user' => $users->findOneBy(
-                ['id' => $id]
-            )
         ]);
 
     }

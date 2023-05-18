@@ -39,7 +39,7 @@ class DashboardController extends AbstractDashboardController
         return [
             
              MenuItem::SubMenu("test", 'fa fa-article')->setSubItems([
-                yield MenuItem::linkToCrud('Salle', 'fa fa-room', Rooms::class),
+                yield MenuItem::linkToCrud('Salle', 'fa fa-box', Rooms::class),
                 yield MenuItem::linkToCrud('Ergonomies', 'fa fa-boxes', Ergonomics::class),
                 yield MenuItem::linkToCrud('Materiel', 'fa fa-database', Material::class),
                 yield MenuItem::linkToCrud('Logiciels', 'fa fa-database', Software::class),

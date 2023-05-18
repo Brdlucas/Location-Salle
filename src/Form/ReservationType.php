@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Reservations;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\SlugType;
+use App\Entity\Rooms;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -42,8 +44,13 @@ class ReservationType extends AbstractType
                     'class' => 'form-control',
                 ]
                 ])
-            ->add('room')
-            ->add('user')
+            ->add('room', EntityType::class, [
+                'class' => Rooms::class,
+            ])
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'firstname',
+            ])
         ;
     }
 

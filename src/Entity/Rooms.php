@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RoomsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -220,7 +221,7 @@ class Rooms
 
     public function __toString()
     {
-        return $this->city . " " . $this->address . " " . $this->description;
+        return $this->city . " " . $this->address . " " . $this->description . " " . $this->id;
     }
 
 }

@@ -71,13 +71,18 @@
                 </div>
                 <div class="w-75">
                     <p>{{ form_start(Reservation) }}</p>
-                    <p>{{ form_row(Reservation.name, {label: 'Titre :'}) }} </p>
+                    <input class="w-25 text-center form-control" name="{{ field_value(Reservation.room) }}"
+                        value="{{room.city}}" />
+
+                    <input class="w-25 text-center form-control" name="{{ field_name(Reservation.user) }}"
+                        value="{{app.user.firstname}}" placeholder="{{app.user}}" class="" disabled />
+                    <input class="w-25 text-center form-control" name="{{ field_name(Reservation.user) }}"
+                        value="{{app.user.lastname}}" placeholder="{{app.user}}" class="" disabled />
                     <p>{{ form_row(Reservation.status, {label: 'Nom :'}) }}</p>
                     <p>{{ form_row(Reservation.preReservation, {label: 'Téléphone :'}) }}</p>
                     <p>{{ form_row(Reservation.startDate, {label: 'Date de début :'}) }}</p>
                     <p>{{ form_row(Reservation.endDate, {label: 'Date de fin :'}) }}</p>
-                    {# <p>{{ form_row(Reservation.user, {label: 'Utilisateur :'}) }} </p> #}
-                    <p>{{ form_row(Reservation.room, {label: 'Salle :'}) }}</p>
+
 
                     <div class="text-center mb-5">
                         <button type="submit" class="btn btn-primary w-25" style="font-size: 25px">Réserver</button>
@@ -86,5 +91,7 @@
 
                 </div>
             </div>
+
+
 </main>
 {% endblock %}

@@ -5,8 +5,9 @@ namespace App\Form;
 use App\Entity\Reservations;
 use App\Entity\Rooms;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;   
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -49,14 +50,15 @@ class ReservationType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ]
-                ])
-            ->add('room', EntityType::class, [
-                'class' => Rooms::class,
-                
-                ])
-                ->add('user', TextType::class, [
-                    'data' => $user->getFirstName(),
+                ]) 
+                ->add('user', EntityType::class, [
+                    'class' => User::class,
+                    ])
+
+                ->add('room', EntityType::class, [
+                    'class' => Rooms::class,
                 ]);
+    
         ;
     }
 

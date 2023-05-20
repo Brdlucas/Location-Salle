@@ -28,9 +28,7 @@ class LocationsController extends AbstractController
     public function oneLocation($id, RoomsRepository $rooms) : Response
     {
         return $this->render('locations/location.html.twig', [
-            'room' => $rooms->findOneBy(
-                ['id' => $id],
-            ),
+            'room' => $rooms->find($id),
         ]);
     }
    

@@ -36,11 +36,6 @@ class ReservationType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('preReservation', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                ]
-            ])
             ->add('startDate', DateTimeType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -51,13 +46,6 @@ class ReservationType extends AbstractType
                     'class' => 'form-control',
                 ]
                 ]) 
-                ->add('user', EntityType::class, [
-                    'class' => User::class,
-                    ])
-
-                ->add('room', EntityType::class, [
-                    'class' => Rooms::class,
-                ]);
     
         ;
     }

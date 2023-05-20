@@ -74,29 +74,10 @@
                     <p>{{ form_row(Reservation.name, {label: 'Titre :'}) }}</p>
 
                     <label for="">Ville de la salle</label>
-                    <input class="w-25 text-center form-control"
-                        name="{{ field_name(Reservation.room, {label: 'Ville de la salle'}) }}" value="{{room.city}}"
-                        disabled />
 
-                    <label for="">Address de la salle</label>
-                    <input class="w-25 text-center form-control" name="{{ field_name(Reservation.room) }}"
-                        value="{{room.address}}" placeholder="{{room.id}}" disabled />
-
-                    <label for="">Prénom</label>
-                    <input class="w-25 text-center form-control" name="{{ field_name(Reservation.user) }}"
-                        value="{{app.user.firstname}}" placeholder="{{app.user}}" disabled />
-
-                    <label for="">Nom</label>
-                    <input class="w-25 text-center form-control"
-                        name="{{ field_name(Reservation.user, {label: 'Nom'}) }}" value="{{app.user.lastname}}"
-                        placeholder="{{app.user}}" class="" disabled />
 
                     <label for="">Status</label>
                     <input class="w-25 text-center form-control" name="{{ field_name(Reservation.status) }}" value="" />
-
-                    <label for="">Pré-reservation</label>
-                    <input class="w-25 text-center form-control" name="{{ field_name(Reservation.preReservation) }}"
-                        value="" />
 
                     <p>{{ form_row(Reservation.startDate, {label: 'Date de début :'}) }}</p>
                     <p>{{ form_row(Reservation.endDate, {label: 'Date de fin :'}) }}</p>
